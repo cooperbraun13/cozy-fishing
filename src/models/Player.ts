@@ -11,4 +11,29 @@ class Player {
     this.rod = rod;
     this.inventory = inventory;
   }
+
+  // Track coins
+  getCoins(coins: number): string {
+    return `Your current balance: ${coins}`;
+  }
+
+  // Track current fishing rod
+  getRod(rod: FishingRod): string {
+    return `Your equipped rod: ${rod}`;
+  }
+
+  // Receive coins
+  addCoins(amount: number): number {
+    return (this.coins += amount);
+  }
+
+  // Spend coins
+  spendCoins(amount: number): number {
+    return (this.coins -= amount);
+  }
+
+  // Upgrade rod
+  upgradeRod(newRod: FishingRod): string {
+    return `Congrats! Your new rod: ${newRod}`;
+  }
 }
