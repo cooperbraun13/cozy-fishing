@@ -19,7 +19,7 @@ export const trout = new Fish("Trout", FishRarity.Common, 10, 65);
 export const salmon = new Fish("Salmon", FishRarity.Uncommon, 25, 35);
 export const catfish = new Fish("Catfish", FishRarity.Rare, 40, 15);
 
-// Deep lake
+// Dark lake
 export const walleye = new Fish("Walleye", FishRarity.Uncommon, 30, 30);
 export const pike = new Fish("Pike", FishRarity.Rare, 55, 10);
 export const muskie = new Fish("Muskie", FishRarity.Epic, 100, 5);
