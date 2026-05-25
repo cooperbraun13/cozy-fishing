@@ -5,4 +5,6 @@ export enum FishRarity {
   Epic = "Epic",
   Legendary = "Legendary",
   Exotic = "Exotic",
+  Trash = "Trash",
+  Treasure = "Treasure",
 }
