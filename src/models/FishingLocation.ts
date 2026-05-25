@@ -1,6 +1,6 @@
 import type { Fish } from "./Fish";
 
-class FishingLocation {
+export class FishingLocation {
   name: string;
   fishPool: Fish[];
 
