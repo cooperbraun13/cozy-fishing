@@ -1,7 +1,7 @@
 import type { FishingRod } from "./FishingRod";
 import type { Inventory } from "./Inventory";
 
-class Player {
+export class Player {
   coins: number;
   rod: FishingRod;
   inventory: Inventory;
@@ -12,28 +12,48 @@ class Player {
     this.inventory = inventory;
   }
 
-  // Track coins
-  getCoins(coins: number): string {
-    return `Your current balance: ${coins}`;
+  // Track coins and return a string
+  getCoinsText(): string {
+    return `Your current balance: ${this.coins}`;
+  }
+
+  // Get coins as a number
+  getCoins(): number {
+    return this.coins;
   }
 
   // Track current fishing rod
-  getRod(rod: FishingRod): string {
-    return `Your equipped rod: ${rod}`;
+  getRod(): string {
+    return `Your equipped rod: ${this.rod.name}`;
   }
 
   // Receive coins
   addCoins(amount: number): number {
-    return (this.coins += amount);
+    if (amount <= 0) {
+      throw Error("Amount must be positive.");
+    }
+
+    this.coins += amount;
+    return this.coins;
   }
 
   // Spend coins
   spendCoins(amount: number): number {
-    return (this.coins -= amount);
+    if (amount <= 0) {
+      throw Error("Amount must be positive.");
+    }
+
+    if (this.coins < amount) {
+      throw Error("Can't spend more than what you have...");
+    }
+
+    this.coins -= amount;
+    return this.coins;
   }
 
   // Upgrade rod
   upgradeRod(newRod: FishingRod): string {
-    return `Congrats! Your new rod: ${newRod}`;
+    this.rod = newRod;
+    return `Congrats! Your new rod: ${newRod.name}`;
   }
 }
