@@ -1,17 +1,23 @@
 import type { Fish } from "./Fish";
 
 export class Inventory {
-  constructor() {}
+  // Hashmap for storing the quantity of every fish in the users inventory
+  // Key: fish name, value: quantity of value
+  fishQuantity = new Map<string, number>();
 
   // Add a fish
   addFish(fish: Fish, inventory: Fish[]): string {
     const existingFish = inventory.find((f) => f.name === fish.name);
 
-    if (existingFish) {
-      existingFish.quantity += fish.quantity;
-    } else {
+    if (!existingFish) {
       inventory.push(fish);
     }
+
+    this.fishQuantity.set(
+      fish.name,
+      (this.fishQuantity.get(fish.name) ?? 0) + 1,
+    );
+
     return `You caught a ${fish.name}!`;
   }
 
@@ -19,8 +25,9 @@ export class Inventory {
   getFish(inventory: Fish[]): string {
     const openingLine = "Your fish inventory:\n";
     const list = inventory
-      .map((fish) => `${fish.name} x${fish.quantity}`)
+      .map((fish) => `${fish.name} x${this.fishQuantity.get(fish.name) ?? 0}`)
       .join("\n");
+
     return openingLine + list;
   }
 
@@ -28,7 +35,7 @@ export class Inventory {
   getTotalValue(inventory: Fish[]): number {
     let total = 0;
     for (const fish of inventory) {
-      total += fish.value * fish.quantity;
+      total += fish.value * (this.fishQuantity.get(fish.name) ?? 0);
     }
     return total;
   }
