@@ -5,8 +5,14 @@ export class Inventory {
 
   // Add a fish
   addFish(fish: Fish, inventory: Fish[]): string {
-    inventory.push(fish);
-    return `You caught a ${fish}!`;
+    const existingFish = inventory.find((f) => f.name === fish.name);
+
+    if (existingFish) {
+      existingFish.quantity += fish.quantity;
+    } else {
+      inventory.push(fish);
+    }
+    return `You caught a ${fish.name}!`;
   }
 
   // List all fish
